@@ -15,5 +15,12 @@ namespace ServicesTaller
 
             return tallerDataService.obtenerAutos();
         }
+
+        public void  Auto_Detalle(int id)
+        {
+            TallerDataServices tallerDataService = new TallerDataServices();
+
+             tallerDataService.Auto_Detalle(id);
+        }
     }
 }
