@@ -15,12 +15,30 @@ namespace ServicesTaller
 
             return tallerDataService.obtenerAutos();
         }
-
-        public void  Auto_Detalle(int id)
+        public IList<ESTADO> obtenerEstados()
         {
             TallerDataServices tallerDataService = new TallerDataServices();
 
-             tallerDataService.Auto_Detalle(id);
+            return tallerDataService.obtenerEstados();
+        }
+
+        public AutoDto Auto_Detalle(int id)
+        {
+            TallerDataServices tallerDataService = new TallerDataServices();
+
+             return tallerDataService.Auto_Detalle(id);
+        }
+        public AutoDto Auto_Detalle(AutoDto oAutoVM)
+        {
+            TallerDataServices tallerDataService = new TallerDataServices();
+
+            return tallerDataService.Auto_Detalle(oAutoVM);
+        }
+        public void EliminarAuto(int id)
+        {
+            TallerDataServices tallerDataService = new TallerDataServices();
+
+           tallerDataService.EliminarAuto(id);
         }
     }
 }

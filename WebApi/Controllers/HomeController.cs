@@ -16,17 +16,32 @@ namespace WebApi.Controllers
         {
 
             TallerServices tallerServices = new TallerServices();
+    
             List<AUTO> auto = tallerServices.obtenerAutos();
             return View(auto);
         }
 
-        [HttpPost]
-
-        public ActionResult Auto_Detalle(int Id)
+        [HttpGet]
+        public ActionResult Auto_Detalle(int id)
         {
+            AutoDto oAutoVM = new AutoDto();
+         
             TallerServices tallerServices = new TallerServices();
-            tallerServices.Auto_Detalle(Id);
-            return View();
+            var Estados = tallerServices.obtenerEstados();
+            ViewBag.transicionesValidas = Estados;
+            oAutoVM = tallerServices.Auto_Detalle(id);
+            return View(oAutoVM);
+
+        }
+        [HttpPost]
+        public ActionResult Auto_Detalle(AutoDto oAutoVM)
+        {
+
+            //IEnumerable<TransicionDTO> transicionesValidas = wfService.transicionesValidas(s, usuario);
+            TallerServices tallerServices = new TallerServices();
+          
+            oAutoVM = tallerServices.Auto_Detalle(oAutoVM);
+            return RedirectToAction("Index", "Home");
 
         }
 
@@ -34,10 +49,11 @@ namespace WebApi.Controllers
 
         public ActionResult Eliminar(int Id)
         {
-            TallerServices tallerServices = new TallerServices();
-            tallerServices.Auto_Detalle(Id);
-            return View();
+            AutoDto oAutoVM = new AutoDto();
 
+            TallerServices tallerServices = new TallerServices();
+            tallerServices.EliminarAuto(Id);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

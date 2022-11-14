@@ -1,21 +1,14 @@
 ﻿@model  Data.Taller.AutoDto
 @{
-    ViewData["Title"] = "Auto_Detalle";
+    ViewData["Title"] = "Eliminar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if (Model.oAuto.id == 0)
-{
-    <h1>Crear ingreso del Vehículo</h1>
-}
-else
-{
-<h1> Detalles del Vehículo</h1>
-}
-<br>
-<br>
+<h3 class="text-danger"> Estas seguro que lo quiere eliminar?</h3>
+<hr />
+
 <div class="form-group">
-    <form asp-action="Auto_Detalle" asp-asp-controller="Home" method="post">
+    <form asp-action="Eliminar" asp-asp-controller="Home" method="post">
         <input type="hidden" asp-for="Model.oAuto.id" />
         <div class="col-md-12">
             @Html.LabelFor(model => Model.oAuto.patente, new { @class = "control-label col-md-2" })
@@ -121,18 +114,8 @@ else
               "Seleccionar", new { Class = "form-control" })
         </div>
 
-        <div class="mb-2">
-            @if (Model.oAuto.id == 0)
-            {
-                <button class="btn btn-primary btn-sm w25" type="submit">Crear</button>
-            }
-            else
-            {
-                <button class="btn btn-primary btn-sm w25" type="submit">Actualizar</button>
-            }
-            @Html.ActionLink("Volver", "Index", new { @class = "btn btn-danger btn-sm" })
-
-        </div>
+        @Html.ActionLink("Volver", "Index", new { @class = "btn btn-danger btn-sm" })
+        @Html.ActionLink("Eliminar", "EliminarVehiculo", new { @class = "btn btn-danger btn-sm" })
 
     </form>
 </div>

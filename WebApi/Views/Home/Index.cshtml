@@ -12,7 +12,8 @@
         <h5>Lista de Autos</h5>
     </div>
     <div class="card-body">
-        <a class="btn btn-success btn-sm" asp-action="Auto_detalle" asp-controller="Home" asp-route-idAuto="0">Crear nuevo</a>
+        @Html.ActionLink("Dar de Alta Auto", "Auto_detalle", new { id = 0 }, new { @class = "btn btn-success btn-sm" })
+
         <hr />
         <table class="table table-striped">
             <thead>
@@ -36,14 +37,18 @@
                         <td>@item.año</td>
                         <td>@item.color</td>
                         <td>@item.TECNICO.apellido</td>
-                            <td>@item.ESTADO.descripcion</td>
-                            <td>
-                                <a class="btn btn-primary btn-sm" asp-action="Auto_Detalle" asp-controller="Home" asp-route-id="3">Editar</a>
-                                <a class="btn btn-danger btn-sm" asp-action="Eliminar" asp-controller="Home" asp-route-id="@item.id">Eliminar</a>
-                            </td>
+                        <td>@item.ESTADO.descripcion</td>
+                        <td>
+
+                            @Html.ActionLink("Editar", "Auto_Detalle", new { id = item.id },new{ @class = "btn btn-primary btn-sm" })
+                            @Html.ActionLink("Eliminar", "Eliminar", new { id = item.id }, new {@class = "btn btn-danger btn-sm" })
+
+              
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
 </div>
+

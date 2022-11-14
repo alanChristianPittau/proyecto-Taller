@@ -11,23 +11,41 @@ namespace Data.Taller
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class AUTO
     {
+
         public int id { get; set; }
+        [Required]
+
+        [Display(Name = "Marca")]
         public string marca { get; set; }
+        [Display(Name = "Modelo")]
         public string modelo { get; set; }
+        [Display(Name = "Patente")]
         public string patente { get; set; }
+        [Display(Name = "Año")]
         public Nullable<int> año { get; set; }
+        [Display(Name = "Color")]
         public string color { get; set; }
+        [Display(Name = "Numero Chasis")]
         public string nChasis { get; set; }
+        [Display(Name = "Nombre del Titular")]
         public string titularNombre { get; set; }
+        [Display(Name = "Apellido del Titular")]
         public string titularApellido { get; set; }
+        [Display(Name = "Celular")]
         public string celular { get; set; }
+        [Display(Name = "Km")]
         public Nullable<int> km { get; set; }
+        [Display(Name = "Problema")]
         public string problema { get; set; }
+        [Display(Name = "Solucion")]
         public string solucion { get; set; }
+        [Display(Name = "Id Tecnico")]
         public Nullable<int> idTecnico { get; set; }
+        [Display(Name = "Id Estado")]
         public Nullable<int> idEstado { get; set; }
     
         public virtual ESTADO ESTADO { get; set; }

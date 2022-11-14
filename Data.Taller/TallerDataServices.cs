@@ -23,8 +23,18 @@ namespace Data.Taller
                
             }
         }
+        public IList<ESTADO> obtenerEstados()
+        {
 
-        public void Auto_Detalle(int Id)
+            using (tallerMecanicoEntities1 db = new tallerMecanicoEntities1())
+
+            {
+                List<ESTADO> listaEstados = db.ESTADO.ToList();
+                return listaEstados;
+
+            }
+        }
+        public AutoDto Auto_Detalle(int id)
         {
 
             using (tallerMecanicoEntities1 db = new tallerMecanicoEntities1())
@@ -46,12 +56,45 @@ namespace Data.Taller
                     }).ToList()
 
                 };
-                if (Id != 0)
+                if (id != 0)
                 {
-                    oAutoVM.oAuto = db.AUTO.Find(Id);
+                    oAutoVM.oAuto = db.AUTO.Find(id);
                 }
+                return oAutoVM;
+
+        }
+    }
+    public AutoDto Auto_Detalle(AutoDto oAutoVM)
+        {
+
+            using (tallerMecanicoEntities1 db = new tallerMecanicoEntities1())
+
+            {
+                if (oAutoVM.oAuto.id == 0)
+                {
+                    db.AUTO.Add(oAutoVM.oAuto);
+                }
+                else
+                {
+                    //db.AUTO.Update(oAutoVM.oAuto);
+                }
+                db.SaveChanges();
+                return oAutoVM;
 
             }
+        }
+        public void EliminarAuto(int id)
+        {
+            using (tallerMecanicoEntities1 db = new tallerMecanicoEntities1())
+
+            {
+                var oAuto = db.AUTO.FirstOrDefault(x => x.id == id);
+
+                db.AUTO.Remove(oAuto);
+                db.SaveChanges();
+
+            }
+
         }
     }
 }
